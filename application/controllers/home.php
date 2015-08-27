@@ -11,14 +11,14 @@
  * @version		Version 3.0.0
  */
 
-class Home extends MX_Controller
-{
+class Home extends MX_Controller {
 
-	function index()
-	{
-		$data = array();
-		$this->load->view('home',$data);
-	}
+    function index() {
+        
+        $data = array();
+        $this->load->view('home',$data);
+        
+    }
 	
 }
 
