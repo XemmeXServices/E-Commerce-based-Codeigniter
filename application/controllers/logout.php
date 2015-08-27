@@ -11,7 +11,7 @@
  * @version		Version 3.0.0
  */
 
-class Logout extends MX_Controller
+class Logout extends MY_Controller
 {
 
 	function index()

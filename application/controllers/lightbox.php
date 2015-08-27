@@ -11,7 +11,7 @@
  * @version		Version 3.0.0
  */
 
-class Lightbox extends MX_Controller
+class Lightbox extends CI_Controller
 {
 
 	function index()

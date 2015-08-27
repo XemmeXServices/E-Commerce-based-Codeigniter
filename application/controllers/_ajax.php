@@ -11,7 +11,7 @@
  * @version		Version 3.0.0
  */
 
-class _ajax extends MX_Controller
+class _ajax extends CI_Controller
 {
 	
 	function index()

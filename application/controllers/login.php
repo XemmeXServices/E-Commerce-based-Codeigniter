@@ -11,7 +11,7 @@
  * @version		Version 3.0.0
  */
 
-class Login extends MX_Controller
+class Login extends MY_Controller
 {
 
 	function index()

@@ -1,0 +1,9 @@
+.banner {
+    background: #DBDBDB repeat-x;
+    text-align: center;
+    height: 125px;
+    color: #4F4F4F;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 50px;
+}

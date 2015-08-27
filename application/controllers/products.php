@@ -11,18 +11,18 @@
  * @version		Version 3.0.0
  */
 
-class Products extends MX_Controller
+class Products extends MY_Controller
 {
 
 	function index()
 	{
-		header('Location: '.url());
+		//header('Location: '.url());
 	}
 	
 	function c()
 	{
 		$data = array();
-		$name = $this->uri->segment(3, 'Home');
+		$name = $this->uri->segment(3);
 		$query = $this->db->select('category_title, category_parentkey')->from('categories')->where('category_key', $name)->get();
 		if ($query->num_rows()>0){
 			foreach ($query->result() as $key => $row){

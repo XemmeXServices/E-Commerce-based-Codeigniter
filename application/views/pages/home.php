@@ -10,15 +10,10 @@
  * @license		http://www.totalshopuk.com/license
  * @version		Version 3.0.0
  */
-echo modules::run('_main/top');
-?>
-	
-<?php
-if (!empty($content['body'])){
-	echo  $content['body'];
+
+if (!empty($content)){
+	echo  $content;
 }else{
 	echo '<p style="text-align: center;">- Content Here -</p>';
 }
 ?>	
-
-<?php echo modules::run('_main/bottom'); ?>

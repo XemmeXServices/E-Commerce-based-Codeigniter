@@ -1,9 +1,6 @@
-					</td>
-				</tr>
-			</table>
-		</td>
-		<td class="right">
-			<table class="subright" cellpadding="0" cellspacing="0">
+        </div>
+        <div class="col-xs-3" style="border: 2px solid black;">
+            <table class="subright" cellpadding="0" cellspacing="0">
 				<tr class="subrighthdr"><td>Search</td></tr>
 				<tr class="subrightcntmargin"><td></td></tr>
 				<tr class="subrightcnt"><td><input id="search" type="text" style="width:140px" class="textstyle" onkeypress="if (event.keyCode==13 || event.which==13) search();" value="<?php if (!empty($searched)){echo $searched;} ?>"><td></tr>
@@ -25,17 +22,13 @@
 				<tr class="subrightcnt"><td><input type="button" class="buttonstyle" value="Cancel" onclick="javascript:cancel_basket();"><span id="cancel_status" style="display:none"></span></td></tr>
 				<tr class="subrightcntmargin2"><td></td></tr>
 			</table><br>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="3" class="nav" valign="middle">
-			<a href="<?php echo url(); ?>testimonials">Testimonials</a>
-			<a href="<?php echo url(); ?>privacy">Privacy</a>
-			<a href="<?php echo url(); ?>terms">Terms and Conditions</a>
-		</td>
-	</tr>
-	<tr><td colspan="3" class="footer">Copyright (c) <?php echo date('Y'); ?> <a target="_blank" href="http://www.frozentiger.com/">Frozen Tiger Ltd</a></td></tr>
-	<tr><td colspan="3" class="bottom"></td></tr>
-</table>
-</body>
-</html>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" style="border: 2px solid black;">
+            <a href="<?php echo url(); ?>testimonials">Testimonials</a>
+            <a href="<?php echo url(); ?>privacy">Privacy</a>
+            <a href="<?php echo url(); ?>terms">Terms and Conditions</a>
+            <br />Copyright (c) <?php echo date('Y'); ?> {function:version}</div>
+    </div>
+</div>
