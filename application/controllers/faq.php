@@ -2,7 +2,7 @@
 /**
  * Total Shop UK eCommerce Open Source
  *
- * The Login controller to be used with Total Shop UK eCommerce Open Source
+ * The FAQ controller to be used with Total Shop UK eCommerce Open Source
  *
  * @package		Total Shop UK eCommerce Open Source
  * @author		Jason Davey
@@ -11,20 +11,16 @@
  * @version		Version 3.0.0
  */
 
-class Login extends MX_Controller
+class Faq extends MX_Controller
 {
 
 	function index()
 	{
-		if ($this->session->userdata('user_id')!=''){
-			header('Location: '.url());
-		}else{
-			$data=array();
-			$this->load->view('login',$data);
-		}
+		$data = array();
+		$this->load->view('home',$data);
 	}
 	
 }
 
-/* End of file login.php */
-/* Location: ./application/controllers/login.php */
+/* End of file faq.php */
+/* Location: ./application/controllers/faq.php */

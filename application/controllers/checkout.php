@@ -11,7 +11,7 @@
  * @version		Version 3.0.0
  */
 
-class Checkout extends MY_Controller
+class Checkout extends MX_Controller
 {
 
 	function index()

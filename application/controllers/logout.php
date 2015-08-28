@@ -2,7 +2,7 @@
 /**
  * Total Shop UK eCommerce Open Source
  *
- * The Login controller to be used with Total Shop UK eCommerce Open Source
+ * The Logout controller to be used with Total Shop UK eCommerce Open Source
  *
  * @package		Total Shop UK eCommerce Open Source
  * @author		Jason Davey
@@ -11,20 +11,22 @@
  * @version		Version 3.0.0
  */
 
-class Login extends MX_Controller
+class Logout extends MX_Controller
 {
 
 	function index()
 	{
 		if ($this->session->userdata('user_id')!=''){
+			$data = array();
+			$this->session->unset_userdata('user_id');
+			$this->session->unset_userdata('user_level');
 			header('Location: '.url());
 		}else{
-			$data=array();
-			$this->load->view('login',$data);
+			header('Location: '.url().'login');
 		}
 	}
 	
 }
 
-/* End of file login.php */
-/* Location: ./application/controllers/login.php */
+/* End of file logout.php */
+/* Location: ./application/controllers/logout.php */
