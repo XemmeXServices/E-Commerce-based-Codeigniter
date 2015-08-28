@@ -1,10 +1,7 @@
 <div class="container">
     <nav class="navbar navbar-fixed-top navbar-dark bg-primary">
-        <a class="navbar-brand" href="{function:base_url}">Home</a>
+        <a class="navbar-brand" href="{function:base_url}">Home <span class="sr-only">(current)</span></a>
         <ul class="nav navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="{function:base_url}">Home <span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{function:base_url}Home/about">About Us</a>
             </li>
@@ -19,17 +16,17 @@
             <ul class="nav navbar-nav">
             <?php if ($this->session->userdata('user_id')==''){ ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="{function:base_url}/Auth/login">Login</a>
+                    <a class="nav-link" href="{function:base_url}Auth/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{function:base_url}/Auth/Register">Register</a>
+                    <a class="nav-link" href="{function:base_url}Auth/Register">Register</a>
                 </li>
             <?php } else { ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="{function:base_url}/Account">Account</a>
+                    <a class="nav-link" href="{function:base_url}Account">Account</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{function:base_url}/Auth/Logout">Logout</a>
+                    <a class="nav-link" href="{function:base_url}Auth/Logout">Logout</a>
                 </li>
             <?php } ?>
             </ul>
@@ -46,7 +43,7 @@
     <div class="row">
         <div class="col-xs-3" style="border: 2px solid black;">
             <?php
-            if ($level==1){
+            if ($level==2){
             ?>
             <table class="subleft" cellpadding="0" cellspacing="0">
                 <tr class="sublefthdr"><td>Admin</td></tr>

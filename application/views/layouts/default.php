@@ -46,25 +46,25 @@
         endif; 
         ?>
         <script type="text/javascript" charset="utf-8">
-            function search(){
-		var $j = jQuery.noConflict();
-		var search = URLEncode($j("#search").val());
-		parent.location='{function:base_url}search/s/'+search;
-            }
-            function refresh_page(){
-		parent.location=URLDecode('<?php echo urlencode($_SERVER["REQUEST_URI"]); ?>');
-            }
-            function cancel_basket(){
-		var $j = jQuery.noConflict();
-		$j.post("{function:base_url}_ajax/reset_basket",{reset: 'true'},
-		function(data){
-                    if (data!=''){
-                        $j("#cancel_status").html(data);
-                        refresh_page();
-                    }
-		});
-		return false;
-            }
+//            function search(){
+//		var $j = jQuery.noConflict();
+//		var search = URLEncode($j("#search").val());
+//		parent.location='{function:base_url}search/s/'+search;
+//            }
+//            function refresh_page(){
+//		parent.location=URLDecode('<?php echo urlencode($_SERVER["REQUEST_URI"]); ?>');
+//            }
+//            function cancel_basket(){
+//		var $j = jQuery.noConflict();
+//		$j.post("{function:base_url}_ajax/reset_basket",{reset: 'true'},
+//		function(data){
+//                    if (data!=''){
+//                        $j("#cancel_status").html(data);
+//                        refresh_page();
+//                    }
+//		});
+//		return false;
+//            }
 	</script>
     </body>
 </html>

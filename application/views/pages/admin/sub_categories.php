@@ -10,9 +10,7 @@
  * @license		http://www.totalshopuk.com/license
  * @version		Version 3.0.0
  */
-echo modules::run('_main/top');
 ?>
-
 <script src="<?php echo url(); ?>js/prototype.js" type="text/javascript"></script>
 <script src="<?php echo url(); ?>js/scriptaculous.js" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8">
@@ -89,5 +87,3 @@ if ($cats==1){
 	echo '<br><br>No Categories!';
 }
 ?>
-
-<?php echo modules::run('_main/bottom'); ?>

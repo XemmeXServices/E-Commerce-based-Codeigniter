@@ -11,7 +11,7 @@
  * @version		Version 3.0.0
  */
 
-class Admin extends MX_Controller
+class Admin extends MY_Controller
 {
 	
 	function index()
@@ -22,10 +22,9 @@ class Admin extends MX_Controller
 	
 	function shipping()
 	{
-		if ($this->session->userdata('user_level')!=1){
+		if ($this->session->userdata('user_level') == 0){
 			header('Location: '.url());
 		}else{
-			$data = array();
 			$country_codes = array();
 			$query = $this->db->select('country_code, country_title')->from('countries')->order_by('country_title','ASC')->get();
 			if ($query->num_rows()>0){
@@ -36,32 +35,32 @@ class Admin extends MX_Controller
 			$query = $this->db->from('shipping')->order_by('shipping_title','ASC')->get();
 			if ($query->num_rows()>0){
 				foreach ($query->result() as $key => $row){
-					$data['shipping'][$row->shipping_id]['title'] 		= $row->shipping_title;
-					$data['shipping'][$row->shipping_id]['price'] 		= $row->shipping_price;
+					$this->data['shipping'][$row->shipping_id]['title'] 		= $row->shipping_title;
+					$this->data['shipping'][$row->shipping_id]['price'] 		= $row->shipping_price;
 					$shipping_country[$row->shipping_id] = explode(",", $row->shipping_countries);
 					foreach ($country_codes as $country_code => $country_title){
 						if (in_array($country_code,$shipping_country[$row->shipping_id])){
-							$data['shipping'][$row->shipping_id]['countries_added'][$country_code] = $country_title;
+							$this->data['shipping'][$row->shipping_id]['countries_added'][$country_code] = $country_title;
 						}else{
-							$data['shipping'][$row->shipping_id]['countries_available'][$country_code] = $country_title;
+							$this->data['shipping'][$row->shipping_id]['countries_available'][$country_code] = $country_title;
 						}
 					}
-					$data['shipping'][$row->shipping_id]['default'] 	= $row->shipping_default;
-					$data['shipping'][$row->shipping_id]['active'] 		= $row->shipping_active;
+					$this->data['shipping'][$row->shipping_id]['default'] 	= $row->shipping_default;
+					$this->data['shipping'][$row->shipping_id]['active'] 		= $row->shipping_active;
 				}
 			}
-			$this->load->view('admin/shipping',$data);
+			$this->layout->view('pages/admin/shipping',$this->data);
 		}
 	}
 	
 	function categories()
 	{
-		if ($this->session->userdata('user_level')!=1){
+		if ($this->session->userdata('user_level') == 0){
 			header('Location: '.url());
 		}else{
-			if ($this->uri->segment(3)!=''){
-				$parent_key = $this->uri->segment(3);
-				$data = array();
+			if ($this->uri->segment(4)!=''){
+				$parent_key = $this->uri->segment(4);
+				
 				$query = $this->db
 				->select('category_key, category_parentkey, category_title')
 				->from('categories')
@@ -69,25 +68,24 @@ class Admin extends MX_Controller
 				->order_by('category_order ASC, category_title ASC')
 				->get();
 				if ($query->num_rows()>0){
-					$data['cats']=1;
+					$this->data['cats']=1;
 					foreach ($query->result() as $key => $row){
-					    $data['category'][$row->category_key]['key']		= $row->category_key;
-					 	$data['category'][$row->category_key]['parentkey']	= $row->category_parentkey;
-					 	$data['category'][$row->category_key]['title']		= $row->category_title;
+					    $this->data['category'][$row->category_key]['key']		= $row->category_key;
+					 	$this->data['category'][$row->category_key]['parentkey']	= $row->category_parentkey;
+					 	$this->data['category'][$row->category_key]['title']		= $row->category_title;
 					}
 				}else{
-					$data['cats']=0;
+					$this->data['cats']=0;
 				}
 				$query = $this->db->select('category_title')->from('categories')->where('category_key', $parent_key)->get();
 				if ($query->num_rows()>0){
 					foreach ($query->result() as $key => $row){
-					 	$data['category_title'] = $row->category_title;
+					 	$this->data['category_title'] = $row->category_title;
 					}
 				}
-				$data['parent_key']=$parent_key;
-				$this->load->view('admin/sub_categories',$data);
+				$this->data['parent_key']=$parent_key;
+				$this->layout->view('pages/admin/sub_categories',$this->data);
 			}else{
-				$data = array();
 				$parent_key = '_top';
 				$query = $this->db
 				->select('category_key, category_parentkey, category_title')
@@ -96,27 +94,27 @@ class Admin extends MX_Controller
 				->order_by('category_order ASC, category_title ASC')
 				->get();
 				if ($query->num_rows()>0){
-					$data['cats']=1;
+					$this->data['cats']=1;
 					foreach ($query->result() as $key => $row){
-					    $data['category'][$row->category_key]['key']		= $row->category_key;
-					 	$data['category'][$row->category_key]['parentkey']	= $row->category_parentkey;
-					 	$data['category'][$row->category_key]['title']		= $row->category_title;
+					    $this->data['category'][$row->category_key]['key']		= $row->category_key;
+					 	$this->data['category'][$row->category_key]['parentkey']	= $row->category_parentkey;
+					 	$this->data['category'][$row->category_key]['title']		= $row->category_title;
 					}
 				}else{
-					$data['cats']=0;
+					$this->data['cats']=0;
 				}
-				$data['parent_key']=$parent_key;
-				$this->load->view('admin/categories',$data);
+				$this->data['parent_key']=$parent_key;
+				$this->layout->view('pages/admin/categories',$this->data);
 			}
 		}
 	}
 	
 	function products()
 	{
-		if ($this->session->userdata('user_level')!=1){
+		if ($this->session->userdata('user_level') == 0){
 			header('Location: '.url());
 		}else{
-			$data = array();
+			
 			$catkey = '';
 			$i=0;
 			$query = $this->db
@@ -127,7 +125,7 @@ class Admin extends MX_Controller
 			->get();
 			if ($query->num_rows()>0){
 				foreach ($query->result() as $key => $row){	
-					$data['categories'][$row->category_key] = '---'.$row->category_title.'---';
+					$this->data['categories'][$row->category_key] = '---'.$row->category_title.'---';
 					$query = $this->db
 					->select('category_key, category_title')
 					->from('categories')
@@ -140,12 +138,12 @@ class Admin extends MX_Controller
 								$catkey = $this->uri->segment(3,$row->category_key);
 								$i++;
 							}
-							$data['categories'][$row->category_key] = $row->category_title;
+							$this->data['categories'][$row->category_key] = $row->category_title;
 						}
 					}
 				}
 			}
-			$data['current'] = $catkey;
+			$this->data['current'] = $catkey;
 			$query = $this->db
 			->select('product_key, product_catkey, product_title, product_description, product_price, product_buy, product_image, product_shipping')
 			->from('products')
@@ -153,38 +151,38 @@ class Admin extends MX_Controller
 			->order_by('product_order ASC, product_title ASC')
 			->get();
 			if ($query->num_rows()>0){
-				$data['prods']=1;
+				$this->data['prods']=1;
 				foreach ($query->result() as $key => $row){
-				    $data['product'][$row->product_key]['key']				= $row->product_key;
-				 	$data['product'][$row->product_key]['catkey']			= $row->product_catkey;
-				 	$data['product'][$row->product_key]['title']			= $row->product_title;
-					$data['product'][$row->product_key]['description']		= $row->product_description;
-					$data['product'][$row->product_key]['price']			= $row->product_price;
-					$data['product'][$row->product_key]['buy']				= $row->product_buy;
-					$data['product'][$row->product_key]['product_image']	= $row->product_image;
+				    $this->data['product'][$row->product_key]['key']				= $row->product_key;
+				 	$this->data['product'][$row->product_key]['catkey']			= $row->product_catkey;
+				 	$this->data['product'][$row->product_key]['title']			= $row->product_title;
+					$this->data['product'][$row->product_key]['description']		= $row->product_description;
+					$this->data['product'][$row->product_key]['price']			= $row->product_price;
+					$this->data['product'][$row->product_key]['buy']				= $row->product_buy;
+					$this->data['product'][$row->product_key]['product_image']	= $row->product_image;
 					$shipping[$row->product_key] = explode(",", $row->product_shipping);
 					$query2 = $this->db->select('shipping_id, shipping_title')->from('shipping')->order_by('shipping_title','ASC')->get();
 					if ($query2->num_rows()>0){
 						foreach ($query2->result() as $key2 => $row2){
 							foreach ($shipping as $shipping_key => $shipping_value){
 								if (in_array($row2->shipping_id,$shipping_value)){
-									$data['shipping'][$shipping_key]['added'][$row2->shipping_id] = $row2->shipping_title;
+									$this->data['shipping'][$shipping_key]['added'][$row2->shipping_id] = $row2->shipping_title;
 								}else{
-									$data['shipping'][$shipping_key]['avail'][$row2->shipping_id] = $row2->shipping_title;
+									$this->data['shipping'][$shipping_key]['avail'][$row2->shipping_id] = $row2->shipping_title;
 								}
 							}
 						}
 					}
 				}
 			}else{
-				$data['prods']=0;
+				$this->data['prods']=0;
 			}
 			if ($this->session->flashdata('expand_this')!=''){
-				$data['expand_this'] = $this->session->flashdata('expand_this');
+				$this->data['expand_this'] = $this->session->flashdata('expand_this');
 			}else{
-				$data['expand_this'] = '';
+				$this->data['expand_this'] = '';
 			}
-			$this->load->view('admin/products',$data);
+			$this->layout->view('pages/admin/products',$this->data);
 		}
 	}
 	

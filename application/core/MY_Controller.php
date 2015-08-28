@@ -10,7 +10,7 @@ class MY_Controller extends CI_Controller {
     
     private $ci;
     
-    public function __construct($Page) {
+    public function __construct($Page = "Home") {
         
         parent::__construct();
         
@@ -38,10 +38,10 @@ class MY_Controller extends CI_Controller {
             $this->UpdateLastVisite($this->ci->session->userdata('account_id'));
             $this->VerifIP($this->ci->session->userdata('account_id'));
             if ($this->ci->session->userdata('user_level') >= 1) {
-                $this->data['level'] = 1;
+                $this->data['level'] = 2;
             }
             else {
-                $this->data['level'] = 0;
+                $this->data['level'] = 1;
             }
         }
         else {

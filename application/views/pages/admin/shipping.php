@@ -10,9 +10,7 @@
  * @license		http://www.totalshopuk.com/license
  * @version		Version 3.0.0
  */
-echo modules::run('_main/top');
 ?>
-
 <script type="text/javascript" charset="utf-8">
 function save_shipping(key,type){
 	var title = URLEncode(document.getElementById('title_'+key).value);
@@ -78,5 +76,3 @@ if (!empty($shipping)){
 	echo '<br><br>No Shipping!';
 }
 ?>
-
-<?php echo modules::run('_main/bottom'); ?>

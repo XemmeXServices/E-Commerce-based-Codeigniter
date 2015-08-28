@@ -10,7 +10,6 @@
  * @license		http://www.totalshopuk.com/license
  * @version		Version 3.0.0
  */
-echo modules::run('_main/top');
 ?>
 	
 <script type="text/javascript" src="<?php echo url(); ?>js/prototype.js"></script>
@@ -58,5 +57,3 @@ echo '</table>';
 echo '</div>';
 echo '<p align="center"><input type="button" class="buttonstyle" value="&lt;&lt; Back" onClick="parent.history.back();"></p>';
 ?>
-
-<?php echo modules::run('_main/bottom'); ?>

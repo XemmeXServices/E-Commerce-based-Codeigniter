@@ -10,7 +10,6 @@
  * @license		http://www.totalshopuk.com/license
  * @version		Version 3.0.0
  */
-echo modules::run('_main/top');
 ?>
 
 <script type="text/javascript" charset="utf-8">
@@ -110,5 +109,3 @@ if ($num_pages>1){
 	echo '</div>';
 }
 ?>
-
-<?php echo modules::run('_main/bottom'); ?>
